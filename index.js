@@ -4,20 +4,31 @@ const cheerio = require("cheerio");
 // VARIABLES
 const url =
     "https://in.puma.com/in/en/pd/wild-rider-layers-unisex-sneakers/380697.html";
+
 const myPrice = 1000;
-const firstName = 'darshan';
-const lastName = 'aswath';
+
+//  FIRST/LAST NAME
+const firstName = 'xxxxxx';
+const lastName = 'xxxxxx';
 const postal = '560079';
+// ADDRESS LINE 1 and 2
 const add1 = 'xxxxxx';
 const add2 = 'xxxxxxx';
 const city = 'Bangalore';
-const email = 'darshanaswath@gmail.com';
+
+// EMAIL
+const email = 'xxxxxx';
+
+//  PHONE
 const number = 'xxxxxxxxxx';
+
+// REPLACE FOR YOUR SIZE :>
 const size6 = '#swatch-0200';
 const size7 = '#swatch-0220';
 const size8 = '#swatch-0240';
 const size9 = '#swatch-0260';
 const size10 = '#swatch-0280';
+
 //Timer
 async function sleep(miliseconds) {
     return new Promise((resolve) => setTimeout(resolve, miliseconds));
@@ -25,7 +36,7 @@ async function sleep(miliseconds) {
 
 // Main Function
 async function configure() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "domcontentloaded" });
     await sleep(3000);
@@ -52,6 +63,7 @@ async function checkPrice(page) {
 }
 
 async function selectProduct(page) {
+    // REPLACE SIZE HERE
     page.click(size8);
     await sleep(3000);
     page.click('body > div.page > div.product-detail-root > div.product-page-layout > div.product-details-section > div.product-details-col.col-lg-4 > div > div:nth-child(10) > div > div.add-to-cart-btn-block.col-10.col-sm-8 > button');
@@ -96,6 +108,7 @@ async function selectProduct(page) {
     await sleep(3000);
     page.click('#dwfrm_billing > div > div');
     // OTP STAGE
+    // -------------------------- //
 }
 
 async function run() {
