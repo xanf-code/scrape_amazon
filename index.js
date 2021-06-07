@@ -51,8 +51,6 @@ async function checkPrice(page) {
     }
 }
 
-async function login(page) { }
-
 async function selectProduct(page) {
     page.click(size8);
     await sleep(3000);
@@ -96,6 +94,8 @@ async function selectProduct(page) {
     // SHIPPING COD
     page.click('#dwfrm_billing > fieldset > div:nth-child(3) > div > label > div:nth-child(1)');
     await sleep(3000);
+    page.click('#dwfrm_billing > div > div');
+    // OTP STAGE
 }
 
 async function run() {
