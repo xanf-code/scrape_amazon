@@ -4,6 +4,7 @@ const cheerio = require("cheerio");
 // VARIABLES
 const url = 'https://www.amazon.in/Wowheads-Handmade-Fragile-Lightsaber-Figurine/dp/B08B43H46P/';
 const myPrice = 700;
+
 //Timer
 async function sleep(miliseconds) {
     return new Promise(resolve => setTimeout(resolve, miliseconds));
@@ -49,7 +50,7 @@ async function login(page) {
     await sleep(3000);
     await page.waitForSelector('#ap_password');
     // ADD PASSWORD AS ENVIRONMENT VARIABLE
-    await page.type('#ap_password', '*****');
+    await page.type('#ap_password', '91138817455579');
     await sleep(3000);
     await page.waitForSelector('#signInSubmit');
     await sleep(3000);
@@ -60,6 +61,31 @@ async function login(page) {
 async function buyProduct(page) {
     await page.waitForSelector('#buy-now-button')
     await page.click('#buy-now-button');
+    // TODO MOST RECENT ADDRESS
+    // ------------------------ //
+    // AUTO TYPE ADDRESS
+    await sleep(3000);
+    // USERNAME
+    await page.type('#address-ui-widgets-enterAddressFullName', 'Darshan');
+    await sleep(2000);
+    // Mobile
+    await page.type('#address-ui-widgets-enterAddressPhoneNumber', '9113881745');
+    await sleep(2000);
+    // pin
+    await page.type('#address-ui-widgets-enterAddressPostalCode', '560079');
+    await sleep(2000);
+    // house no
+    await page.type('#address-ui-widgets-enterAddressLine1', '140');
+    await sleep(2000);
+    // area
+    await page.type('#address-ui-widgets-enterAddressLine2', '4th main 2nd stage, KHB Colony');
+    await sleep(2000);
+    // landmark
+    await page.type('#address-ui-widgets-landmark', 'PVP School');
+    await sleep(2000);
+    // town
+    await page.type('#address-ui-widgets-enterAddressCity', 'Bengaluru');
+    await sleep(2000);
 }
 
 async function run() {
