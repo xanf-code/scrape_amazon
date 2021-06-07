@@ -5,7 +5,19 @@ const cheerio = require("cheerio");
 const url =
     "https://in.puma.com/in/en/pd/wild-rider-layers-unisex-sneakers/380697.html";
 const myPrice = 1000;
-
+const firstName = 'darshan';
+const lastName = 'aswath';
+const postal = '560079';
+const add1 = 'xxxxxx';
+const add2 = 'xxxxxxx';
+const city = 'Bangalore';
+const email = 'darshanaswath@gmail.com';
+const number = '9113881745';
+const size6 = '#swatch-0200';
+const size7 = '#swatch-0220';
+const size8 = '#swatch-0240';
+const size9 = '#swatch-0260';
+const size10 = '#swatch-0280';
 //Timer
 async function sleep(miliseconds) {
     return new Promise((resolve) => setTimeout(resolve, miliseconds));
@@ -42,11 +54,48 @@ async function checkPrice(page) {
 async function login(page) { }
 
 async function selectProduct(page) {
-    page.click('#swatch-0260');
+    page.click(size8);
     await sleep(3000);
     page.click('body > div.page > div.product-detail-root > div.product-page-layout > div.product-details-section > div.product-details-col.col-lg-4 > div > div:nth-child(10) > div > div.add-to-cart-btn-block.col-10.col-sm-8 > button');
     await sleep(3000);
     page.goto('https://in.puma.com/in/en/checkout/start?stage=shipping#shipping');
+    await sleep(3000);
+    // FirstName
+    await page.type('#shippingFirstName', firstName);
+    await sleep(3000);
+    // LastName
+    await page.type('#shippingLastName', lastName);
+    await sleep(3000);
+    // POSTCODE
+    await page.type('#shippingZipCode', postal);
+    await sleep(3000);
+    // ADDRESS1
+    await page.type('#shippingAddressOne', add1);
+    await sleep(3000);
+    // ADDRESS2
+    await page.type('#shippingAddressTwo', add2);
+    await sleep(3000);
+    // CITY
+    await page.type('#shippingAddressCity', city);
+    await sleep(3000);
+    // STATE
+    await page.click('#shippingAddressState');
+    await sleep(3000);
+    // EMAIL
+    await page.type('#shippingEmail', email)
+    // CONFIRM EMAIL
+    await page.type('#shippingEmailConfirm', email)
+    // NUMBER
+    await page.type('#shippingPhoneNumber', number)
+    // ALT NUMBER
+    await page.type(' #shippingAlternatePhoneNumber', number)
+    await sleep(3000);
+    // SUBMIT
+    page.click('#shipping-address > div > div > button');
+    await sleep(5000);
+    // SHIPPING COD
+    page.click('#dwfrm_billing > fieldset > div:nth-child(3) > div > label > div:nth-child(1)');
+    await sleep(3000);
 }
 
 async function run() {
