@@ -30,7 +30,6 @@ async function checkPrice(page) {
                 login(page).then(() => {
                     buyProduct(page);
                 });
-                // #buy-now-button
             }
         });
     } catch (error) {
@@ -50,7 +49,7 @@ async function login(page) {
     await sleep(3000);
     await page.waitForSelector('#ap_password');
     // ADD PASSWORD AS ENVIRONMENT VARIABLE
-    await page.type('#ap_password', '91138817455579');
+    await page.type('#ap_password', '*****');
     await sleep(3000);
     await page.waitForSelector('#signInSubmit');
     await sleep(3000);
@@ -59,7 +58,8 @@ async function login(page) {
 }
 
 async function buyProduct(page) {
-
+    await page.waitForSelector('#buy-now-button')
+    await page.click('#buy-now-button');
 }
 
 async function run() {
